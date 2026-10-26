@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: sat-preparation
+    runtime: node
+    plan: starter
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: sat_preparation
+      - key: PUBLIC_ORIGIN
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: PAYMENT_MODE
+        value: manual
+      - key: PREMIUM_PRICE_UZS
+        value: "19000"
